@@ -7,7 +7,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <author email="g@terrawire.com" href="https://sugardaddy.com">
 		Sugar Daddy Free App Team
 	</author>
-     <content src="index.html" />
+     <content src="billing.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
