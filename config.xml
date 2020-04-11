@@ -49,7 +49,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
 	<gap:plugin name="cordova-plugin-customurlscheme" source="npm">
 	  <param name="URL_SCHEME" value="sdfm" />
 	</gap:plugin>
-	<plugin spec="cc.fovea.cordova.purchase">
+	<plugin spec="https://github.com/j3k0/cordova-plugin-purchase.git#phonegap-cli-8.0.0">
 		<param name="BILLING_KEY" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArcTC6k/8yGHWK1bt99CFcyUbR9bEn9GdVfhRl9JmJMzcUNexSL1XSBeiZMTJjjw1bD7nvEA7+TH/ehQ1F0w3ky3BioEHJnYraid/qrTtTr+ot4/cc8iR/ZqbFXzhfWz55NiM7Bd4noPu2KGauuz2mNYXVTwT/JAXAiNcbE7zQBE+KIEYJUc1mBvppLokp/gJF6V5IcKlSZCvJT3gDNT8o9zIlu9X8ogfaS4VrwverkONa2BZEPEeH0QtFcKTKWsnZoliHUzimaXU/vjlvSmHDmqVkjVTaxknctZKiReqHCN2SqXtUg6VSLCn4ZUQxF1Rp44CDUqtUmj5+KDuruVFvQIDAQAB" />
 	</plugin>	
 
