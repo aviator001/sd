@@ -31,7 +31,7 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="ErrorUrl" value="err.html" />
     <preference name="FullScreen" value="true" />
 	<preference name="android-targetSdkVersion" value="28" />
-    <preference name="phonegap-version" value="cli-7.1.0" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-camera" />
     <plugin name="cordova-plugin-media-capture" />
@@ -49,9 +49,13 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
 	<gap:plugin name="cordova-plugin-customurlscheme" source="npm">
 	  <param name="URL_SCHEME" value="sdfm" />
 	</gap:plugin>
-	<gap:plugin name="com.smartmobilesoftware.inappbilling">
+	<config-file platform="android" parent="/manifest" mode="merge">
+		<uses-permission android:name="com.android.vending.BILLING" />
+	</config-file>	
+	<plugin spec="https://github.com/j3k0/cordova-plugin-purchase.git#phonegap-cli-8.0.0">
 		<param name="BILLING_KEY" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArcTC6k/8yGHWK1bt99CFcyUbR9bEn9GdVfhRl9JmJMzcUNexSL1XSBeiZMTJjjw1bD7nvEA7+TH/ehQ1F0w3ky3BioEHJnYraid/qrTtTr+ot4/cc8iR/ZqbFXzhfWz55NiM7Bd4noPu2KGauuz2mNYXVTwT/JAXAiNcbE7zQBE+KIEYJUc1mBvppLokp/gJF6V5IcKlSZCvJT3gDNT8o9zIlu9X8ogfaS4VrwverkONa2BZEPEeH0QtFcKTKWsnZoliHUzimaXU/vjlvSmHDmqVkjVTaxknctZKiReqHCN2SqXtUg6VSLCn4ZUQxF1Rp44CDUqtUmj5+KDuruVFvQIDAQAB" />
-	</gap:plugin>	
+	</plugin>	
+
 	<plugin name="cordova-plugin-facebook4" spec="5.0.0">
         <variable name="APP_ID" value="1203807789827275" />
         <variable name="APP_NAME" value="com.sugar.daddy" />
