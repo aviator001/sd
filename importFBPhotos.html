@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>				
+		<title>SugarDaddyLocal.com :: Sugar Daddy Dating Site</title>		
+		<meta name="keywords" content="sugar daddy, , Sugar Daddy, sugardaddy,  sugardaddy, wealthy  men, twink, hot young  men, boyz,  dating, sugar daddy dating site, daddy dating, find daddy, find twink, lushmatch" />		
+		<meta name="description" content="A place that connects handsome wealthy and caring  men to hot young  males" />		
+		<meta name="Author" content="Gautam Sharma" />		
+		<!-- mobile settings -->		 
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />		
+		<!-- Fav Icons -->		
+		<link rel="icon" href="favicon.png">		
+		<link rel="apple-touch-icon" href="favicon.png">		
+		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet">				
+		<!-- Custom CSS -->		
+		<link href="https://lushmatch.com/assets/css/essentials.css" rel="stylesheet" type="text/css" />		
+		<link href="https://lushmatch.com/assets/css/layout.css" rel="stylesheet" type="text/css" />		
+		<link href="https://lushmatch.com/assets/css/layout-responsive.css" rel="stylesheet" type="text/css" />		
+		<!-- orange: default style -->		
+		<link href="https://onesugardaddy.com/css/animate.css" rel="stylesheet" type="text/css" />
+		<link href="https://lushmatch.com/assets/css/shadows.css" rel="stylesheet" type="text/css" />
+		<!-- orange: default style -->		
+		<link href="css/shadows.css" rel="stylesheet" type="text/css" />
+		<!-- orange: default style -->		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://lushmatch.com/assets/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+<style>
+	* 	{
+			max-width:800px!Important;
+			margin:auto;
+		}
+</style>
+		<style>
+			.tooltipsy {
+				color: #0093D9;
+				background-size:cover;
+				border: none;
+				border-radiuse:4px;
+				text-shadow:0px 0px 1px #333;
+				opacity: 
+			}
+			.eee, .content{
+				width:400px;
+			}
+			.biggy {
+				margin-left:-100px;margin-top:-200px;width:200px;height:200px;border:5px solid white;
+				opacity:1;
+				box-shadow:0 0 25px #333
+			}
+				a {text-decoration:none}
+			.jconfirm {
+				background:#333;
+				opacity:0.9;
+				text-align:center;
+			}
+			.jconfirm-box, container,jconfirm-box-container{
+				text-align:center;
+				max-width:320px;
+			}
+		</style>
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans|Open Sans' rel='stylesheet' type='text/css'>
+	<style>
+div, span, td, p, input {
+	font-family:Open Sans!Important;
+	font-size:14px!Important;
+	font-weight:300!Important;
+}
+.sq {
+	object-fit:cover;
+}
+	</style>
+			<link href="https://onesugardaddy.com/assets/css/jquery-ui.css" rel="stylesheet" />
+		<link href="https://onesugardaddy.com/assets/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+	<script src='cordova.js'></script>
+	</head> 
+	<body style="overflow-y:auto;background:#ecebea">
+		<div  id="divAlbums" style="width:100%;height:100%;background:#ecebea"></div>
+		<div  id="divPhotos" style="width:100%;height:100%;background:#ecebea"></div>
+		<script type="text/javascript" src="https://sugardaddylocal.com/js/jquery.js"></script>
+		<script src="https://onesugardaddy.com/assets/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="https://lushmatch.com/custom_js/cookie.js"></script>
+		<script type="text/javascript" src="https://lushmatch.com/custom_js/wait.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="https://onesugardaddy.com/register.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+		<a href="javascript:show_albums()"><div id="btnShow" style="text-align:center;width:100%;margin-top:30%"><div>Import Photos From</div><div><img src="https://onesugardaddy.com/import.png" style="width:150px"></div></div></a>
+	</body>
+	<script>
+var token,tk
+var albums=[ ]
+	$('#divAlbums').html('')
+	function show_albums() {
+		$('#divAlbums').show()
+		$('#divPhotos').hide()
+		$('#divPhotos').html('')
+		if ($$('divAlbums').innerHTML=='') fetchAlbums()
+	}
+	function fetchAlbums(){
+		$('#btnShow').hide()
+		facebookConnectPlugin.login(["public_profile","email","user_birthday"],function(result){
+		facebookConnectPlugin.getAccessToken(function(token) {
+			tk=token
+			setCookie("token", token);
+		});
+		facebookConnectPlugin.api("/me?fields=email,name,picture,birthday,gender,albums.limit(50){name,count,cover_photo{picture}}",
+			["public_profile","email","user_birthday","user_photos"]
+				,function(ud){
+					var name=ud.name
+					var email=ud.email
+					var birthday=ud.birthday
+					var id=ud.id
+					var als=[ ]
+					var str=''
+					albums=ud.albums.data
+						str='<div class="container">'
+						for (var i=0;i<albums.length;i++) {
+							if (albums[i].count>0) {
+								str+='<div class="row"><div style="text-align:center;margin:2px"  class="col-xs-3"><a href="javascript:render_photos('+albums[i].id+')"><img class="sq www_box" src="'+albums[i].cover_photo.picture+'" style="border:5px solid #fff;max-width:100px!Important;min-width:100px!Important;min-height:100px;max-height:100px!Important"></a></div><div class="col-xs-6" style="margin:3px;text-align:left"><a href="javascript:render_photos('+albums[i].id+')">'+albums[i].name+'<br><b>'+albums[i].count+' Pics</b></div></div>'
+							}
+						}
+						$$('divAlbums').innerHTML=str+'</div></div>'
+						$('#divAlbums').show()
+						$('#divPhotos').hide()					
+
+		},function(error){
+			alert(JSON.stringify(error));
+		  });
+	   },function(error){
+			alert(JSON.stringify(error));
+		 });
+	}	
+
+	function render_photos(id,x_url) {
+		$('#divAlbums').hide()
+		$('#divPhotos').show()
+		$('#divPhotos').html('')
+		var photo=[ ]
+		var tkk=tk
+		var url
+		if (!tk) tkk=getCookie('token')
+		url="https://graph.facebook.com/v6.0/"+id+"/?fields=photos.limit(10)%7Bpicture%2Cimages%7D&limit=10&transport=cors&access_token="+tkk
+		try {
+			$.ajax({url:url,success:function(data){
+				photo=data.photos.data
+				str='<button style="margin-left:10px" onclick="show_albums()" class="btn btn-info">SHOW ALBUMS</button>'
+				if (data.photos.paging.previous) {
+					str+='<button style="margin-left:10px" onclick="previous(\''+data.photos.paging.cursors.before+'\','+id+')" class="btn btn-danger">PREVIOUS</button>'
+				}
+				if (data.photos.paging.next) {
+					str+='<button style="margin-left:10px" onclick="next(\''+data.photos.paging.cursors.after+'\','+id+')" class="btn btn-danger">NEXT</button>'
+				}
+				str+='<div class="container"><div class="row">'
+				for (var i=0; i<photo.length; i++) {
+					if (photo[i].images[0].source) {
+						try {
+							str+='<div style="text-align:center;padding:5px" class="col-xs-6"><a href="javascript:import_photo(\''+photo[i].images[0].source+'\')"><img class="www_box sq" src="'+photo[i].images[0].source+'" style="border:10px solid #fff;max-width:100%!Important;min-width:100%!Important;"></a></div>'
+							
+						} catch (error) {
+							str+=error
+						}
+					}
+				}
+				str+='</div>'
+				str+='<div class="row">'
+				str+='<button style="margin-left:10px" onclick="show_albums()" class="btn btn-info">SHOW ALBUMS</button>'
+				if (data.photos.paging.previous) {
+					str+='<button style="margin-left:10px" onclick="previous(\''+data.photos.paging.cursors.before+'\','+id+')" class="btn btn-danger">PREVIOUS</button>'
+				}
+				if (data.photos.paging.next) {
+					str+='<button style="margin-left:10px" onclick="next(\''+data.photos.paging.cursors.after+'\','+id+')" class="btn btn-danger">NEXT</button>'
+				}
+				$$('divPhotos').innerHTML=str+'</div>'
+				}
+			})
+		} catch (error) {
+			alert(JSON.stringify(error));
+		}
+	}
+	function next(after,id) {
+		$('#divAlbums').hide()
+		$('#divPhotos').show()
+		$('#divPhotos').html('')
+		var photo=[ ]
+		var tkk=tk
+		var url
+		if (!tk) tkk=getCookie('token')
+		url="https://graph.facebook.com/v6.0/"+id+"/photos?fields=picture%2Cimages&limit=10&transport=cors&access_token="+tkk+"&after="+after
+		try {
+			$.ajax({url:url,success:function(data){
+				photo=data.data
+				str='<button style="margin-left:10px" onclick="show_albums()" class="btn btn-info">SHOW ALBUMS</button>'
+				if (data.paging.previous) {
+					str+='<button style="margin-left:10px" onclick="previous(\''+data.paging.cursors.before+'\','+id+')" class="btn btn-danger">PREVIOUS</button>'
+				}
+				if (data.paging.next) {
+					str+='<button style="margin-left:10px" onclick="next(\''+data.paging.cursors.after+'\','+id+')" class="btn btn-danger">NEXT</button>'
+				}
+				str+='<div class="container"><div class="row">'
+				for (var i=0; i<photo.length; i++) {
+					if (photo[i].images[0].source) {
+						try {
+							str+='<div style="text-align:center;padding:5px" class="col-xs-6"><a href="javascript:import_photo(\''+photo[i].images[0].source+'\')"><img class="www_box sq" src="'+photo[i].images[0].source+'" style="border:10px solid #fff;max-width:100%!Important;min-width:100%!Important;"></a></div>'
+						} catch (error) {
+							str+=error
+						}
+					}
+				}
+				str+='</div>'
+				str+='<div class="row">'
+				str+='<button style="margin-left:10px" onclick="show_albums()" class="btn btn-info">SHOW ALBUMS</button>'
+				if (data.paging.previous) {
+					str+='<button style="margin-left:10px" onclick="previous(\''+data.paging.cursors.before+'\','+id+')" class="btn btn-danger">PREVIOUS</button>'
+				}
+				if (data.paging.next) {
+					str+='<button style="margin-left:10px" onclick="next(\''+data.paging.cursors.after+'\','+id+')" class="btn btn-danger">NEXT</button>'
+				}
+				$$('divPhotos').innerHTML+=str+'</div>'
+				}
+			})
+		} catch (error) {
+			alert(JSON.stringify(error));
+		}
+	}
+
+	function previous(before,id) {
+		$('#divAlbums').hide()
+		$('#divPhotos').show()
+		$('#divPhotos').html('')
+		var photo=[ ]
+		var tkk=tk
+		var url
+		if (!tk) tkk=getCookie('token')
+		url="https://graph.facebook.com/v6.0/"+id+"/photos?fields=picture%2Cimages&limit=10&transport=cors&access_token="+tkk+"&before="+before
+		try {
+			$.ajax({url:url,success:function(data){
+				photo=data.data
+				str='<button style="margin-left:10px" onclick="show_albums()" class="btn btn-info">SHOW ALBUMS</button>'
+				if (data.paging.previous) {
+					str+='<button style="margin-left:10px" onclick="previous(\''+data.paging.cursors.before+'\','+id+')" class="btn btn-danger">PREVIOUS</button>'
+				}
+				if (data.paging.next) {
+					str+='<button style="margin-left:10px" onclick="next(\''+data.paging.cursors.after+'\','+id+')" class="btn btn-danger">NEXT</button>'
+				}
+				str+='<div class="container"><div class="row">'
+				for (var i=0; i<photo.length; i++) {
+					if (photo[i].images[0].source) {
+						try {
+							str+='<div style="text-align:center;padding:5px" class="col-xs-6"><a href="javascript:import_photo(\''+photo[i].images[0].source+'\')"><img class="www_box sq" src="'+photo[i].images[0].source+'" style="border:10px solid #fff;max-width:100%!Important;min-width:100%!Important;"></a></div>'
+						} catch (error) {
+							str+=error
+						}
+					}
+				}
+				str+='</div>'
+				str+='<div class="row">'
+				str+='<button style="margin-left:10px" onclick="show_albums()" class="btn btn-info">SHOW ALBUMS</button>'
+				if (data.paging.previous) {
+					str+='<button style="margin-left:10px" onclick="previous(\''+data.paging.cursors.before+'\','+id+')" class="btn btn-danger">PREVIOUS</button>'
+				}
+				if (data.paging.next) {
+					str+='<button style="margin-left:10px" onclick="next(\''+data.paging.cursors.after+'\','+id+')" class="btn btn-danger">NEXT</button>'
+				}
+				$$('divPhotos').innerHTML+=str+'</div>'
+				}
+			})
+		} catch (error) {
+			alert(JSON.stringify(error));
+		}
+	}
+	</script>
+</html>
+				
