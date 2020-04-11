@@ -1,35 +1,56 @@
-document.addEventListener('deviceready', onDeviceReady);
+document.addEventListener('deviceready', initStore);
+document.addEventListener('deviceready', refreshLockedUI);
 
-function onDeviceReady() {
-  refreshUI();
-  store.register({type: store.CONSUMABLE, id: 'my_product'});
-  store.when('my_product')
-    .updated(refreshUI)
-    .approved(finishPurchase);
+function initStore() {
+
+  if (!window.store) {
+    console.log('Store not available');
+    return;
+  }
+
+  store.verbosity = store.INFO;
+  store.register({
+    id:    'nonconsumable1',
+    type:   store.CONSUMABLE
+  });
+
+  store.error(function(error) {
+    console.log('ERROR ' + error.code + ': ' + error.message);
+  });
+
+  store.when('nonconsumable1').updated(refreshProductUI);
+  store.when('nonconsumable1').approved(function(p) {
+    p.verify();
+  });
+  store.when('nonconsumable1').verified(finishPurchase);
+
   store.refresh();
 }
 
-function finishPurchase(p) {
-  localStorage.goldCoins = (localStorage.goldCoins | 0) + 10;
-  p.finish();
-  refreshUI();
+function refreshLockedUI() {
+  document.getElementById('locked').textContent =
+    'Feature ' + window.localStorage.unlocked === 'YES' ? 'UNLOCKED! \o/' : 'locked :(';
 }
 
-function refreshUI() {
-  const product = store.get('my_product');
-  const button = `<button onclick="store.order('my_product')">Purchase</button>`;
+function refreshProductUI(product) {
+  const info = product.loaded
+  ? `<h1>${product.title}</h1>` +
+    `<p>${product.description}</p>` +
+    `<p>${product.price}</p>`
+  : '<p>Retrieving info...</p>';
+  const button = product.canPurchase
+  ? '<button onclick="purchaseNonConsumable1()">Buy Now!</button>'
+  : '';
+  const el = document.getElementById('nonconsumable1-purchase');
+  el.innerHTML = info + button;
+}
 
-  document.getElementsByTagName('body')[0].innerHTML = `
-  <div>
-    <pre>
-      Gold: ${localStorage.goldCoins | 0}
+function purchaseNonConsumable1() {
+  store.order('nonconsumable1');
+}
 
-      Product.state: ${product.state}
-             .title: ${product.title}
-             .descr: ${product.description}
-             .price: ${product.price}
-
-    </pre>
-    ${product.canPurchase ? button : ''}
-  </div>`;
+function finishPurchase(p) {
+  window.localStorage.unlocked = 'YES';
+  p.finish();
+  refreshLockedUI();
 }
